@@ -43,3 +43,23 @@ void MainEjemplosMemoriaDinamica()
 	// if (myNormalInt == nullptr) // una variable no-puntero no se puede comparar contra nullptr.
 
 }
+
+void ParOImparParaEnteros(int intArray[], int tamano)
+{
+	// usen un puntero auxiliar para manejar las direcciones de memoria y no modificar a array directamente.
+	int* ptrAuxiliar = intArray;
+	// iterar por todos los elementos del array y le pongamos el resultado de %2 a cada elemento.
+	for (int i = 0; i < tamano; i++)
+	{
+		*ptrAuxiliar = *ptrAuxiliar % 2;
+		ptrAuxiliar++;
+	}
+
+	for (int i = 0; i < tamano; i++)
+	{
+		// estas dos líneas son exactamente igual de válidas.
+		*(ptrAuxiliar + i) = *(ptrAuxiliar + i) % 2;
+		ptrAuxiliar[i] = ptrAuxiliar[i] % 2;
+	}
+
+}

@@ -13,6 +13,33 @@ using namespace std;
 #include "EjerciciosMemoriaDinamica.h"
 #include "ClaseConstructoresYDestructores.h"
 
+#include "ExplicacionIfndef.h"
+
+// aquí ya no se procesa lo del bloque #ifndef porque ya se procesó en el "ExplicacionIfndef.h" y ahí ya se definió
+// el símbolo EXPLICACIONIFNDEF_H.
+#ifndef EXPLICACIONIFNDEF_H
+#define EXPLICACIONIFNDEF_H
+// si no está definido X, entonces defíneme X
+
+// todas las cosas que tienen # son directivas de preprocesador
+
+// ifndef -> if undefined, "si no está definido", se procesa (para compilarse) todo el código que esté entre 
+// ese #ifndef y el #endif
+
+
+
+
+class ExplicacionIfndef
+{
+};
+
+#endif // !EXPLICACIONIFNDEF_H
+
+
+#include "ExplicacionTemplates.h"
+#include "DynamicArray.h"
+
+
 // Todos los defines se remplazan por el texto que tienen a la derecha.
 #define TAMANO_MY_INT_ARRAY 10
 #define MULTIPLICACION_2_X_3 2*3 
@@ -260,6 +287,29 @@ void ImprimirEsLunes()
 
 int main()
 {
+	DynamicArray myDArray = DynamicArray(5);
+
+	for (int i = 0; i < 6; i++)
+	{
+		myDArray.Append(i);
+	}
+
+
+
+	int myArrayForTemplate[10];
+	ImprimirArrayTemplate(myArrayForTemplate, 10);
+
+	float myFloatArrayForTemplate[10];
+	ImprimirArrayTemplate(myFloatArrayForTemplate, 10);
+
+	Triangle myTriangleArrayForTemplate[10];
+	ImprimirArrayTemplate(myTriangleArrayForTemplate, 10);
+
+	char myCharArrayForTemplate[10];
+	ImprimirArrayTemplate(myCharArrayForTemplate, 10);
+
+
+
 	// cuando tú no especificas el constructor, se manda a llamar el constructor por defecto.
 	Triangle myTriangle; // el constructor se manda a llamar automáticamente al declarar este objeto
 
@@ -276,6 +326,11 @@ int main()
 
 
 	Triangle* ptrTriangle = new Triangle();
+	// como aquí le hago delete, aquí se va a mandar a llamar el destructor de Triangle.
+	delete ptrTriangle;
+
+	// el destructor de los Triangle de memoria estática declarados arriba, se manda a llamar cuando se sale de 
+	// las llaves {} donde fueron declarados, en este caso, al salir de la función main().
 
 	int dia = 0;
 	if (dia == 0)
@@ -283,7 +338,19 @@ int main()
 		ImprimirEsLunes();
 	}
 
-	// static_cast<void*>
+	// Imprimir la dirección de memoria
+	// static_cast<void*>(myAuxPointer)
+	// static_cast
+	// cast es una interpretación de los bits/bytes de una variable como si fuera del tipo solicitado.
+	// int myCastedInt = (int)7.77;
+
+	// cast normalito, no estático
+	void* myCastedVoidPtr = (void*)&creadoPorFuncionEnVezDeConstructor;
+
+	// cast estático, tiene seguridad adicional, si el casteo falla lanza (throw) un error.
+	int myCastedInt = static_cast<int>(7.77);
+
+	// dynamic_cast, se usa clases con herencia
 
 	// bool myBool = true;
 	// cout << (myBool ? "true" : "false") << endl;
