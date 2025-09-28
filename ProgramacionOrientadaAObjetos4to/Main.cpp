@@ -35,6 +35,7 @@ class ExplicacionIfndef
 
 #endif // !EXPLICACIONIFNDEF_H
 
+#include "ParametrosPorReferenciaComoSalidaDeFuncion.h"
 
 #include "ExplicacionTemplates.h"
 #include "DynamicArray.h"
@@ -287,6 +288,8 @@ void ImprimirEsLunes()
 
 int main()
 {
+	MainParametrosPorReferenciaComoSalidaDeFuncion();
+
 	DynamicArray myDArray = DynamicArray(5);
 
 	for (int i = 0; i < 6; i++)
