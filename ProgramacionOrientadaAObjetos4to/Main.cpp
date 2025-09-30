@@ -39,7 +39,7 @@ class ExplicacionIfndef
 
 #include "ExplicacionTemplates.h"
 #include "DynamicArray.h"
-
+#include "Stack.h"
 
 // Todos los defines se remplazan por el texto que tienen a la derecha.
 #define TAMANO_MY_INT_ARRAY 10
@@ -296,8 +296,26 @@ int main()
 	{
 		myDArray.Append(i);
 	}
+	myDArray.Append(7);
+	myDArray.Append(8);	
+	myDArray.Append(9);
+	// aquí ya se necesitaría otra vez el resize, porque se acaban los espacios disponibles,
+	// y ahora tendríamos un array de 10*2 espacios, de los cuales tenemos ocupados 11.
+	myDArray.Append(10);
 
+	cout << "imprimiendo el array dinámico" << endl;
+	for (int i = 0; i < myDArray.GetCount(); i++)
+	{
+		cout << myDArray.ObtenerElemento(i) << endl;
+	}
 
+	Stack myStack = Stack(5);
+	for (int i = 0; i < 6; i++)
+	{
+		myStack.Push(i);
+	}
+	myStack.PrintStack();
+	myStack.Pop();
 
 	int myArrayForTemplate[10];
 	ImprimirArrayTemplate(myArrayForTemplate, 10);

@@ -52,7 +52,7 @@ void MainParametrosPorReferenciaComoSalidaDeFuncion()
 	}
 	else
 	{
-		cout << "alto o ancho son menores o iguales a 0. Favor de verificar" << endl;
+		cout << "alto o ancho son menores o iguales a 0. Favor de verificar. No se pudo calcular el área ni el perímetro. " << endl;
 	}
 }
 

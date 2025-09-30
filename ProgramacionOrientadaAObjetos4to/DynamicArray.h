@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+using namespace std;
 
 /// <summary>
 /// Un array que incrementa su tamaño automáticamente cuando se intenta insertar un elemento en él,
@@ -8,24 +10,78 @@
 class DynamicArray
 {
 public:
-	DynamicArray(int capacity);
+	DynamicArray(int capacity = 0);
 
 	~DynamicArray();
 
+	//Append(x) añadir el valor x en la posición última que se ha ocupado del array.
+	// si ya está lleno el arreglo, manda a incrementar su tamaño automáticamente.
 	void Append(int value)
 	{
 		if (count == capacity)
 		{
+			if (capacity == 0)
+				capacity = 1;
+			else
+				capacity *= 2;
+			// capacity = capacity == 0 ? 1 : capacity * 2; // este sería el if de una línea que equivale al if-else de arriba
+			
 			// entonces está lleno y hay que pedir más memoria, copiar el arreglo actual al nuevo, y borrar el viejo.
+			int *arrayConMásMemoria = new int[capacity]; // trae el doble de memoria
+			for (int i = 0; i < capacity; i++)
+			{
+				arrayConMásMemoria[i] = elements[i];
+			}
+			delete[] elements;
+
+			// reasignamos nuestra variable interna de elements, a que apunte a la dirección del arreglo nuevo con más memoria.
+			elements = arrayConMásMemoria;
+
 			// En otras palabras, mandar a llamar la función Resize()
-			// NOS QUEDAMOS EL DÍA 25 DE SEPTIEMBRE
 		}
 		elements[count] = value;
 		count++; // y ahora tiene dentro 1 elementos más.
 	}
 
-	//Append(x) añadir el valor x en la posición última que se ha ocupado del array.
-	// si ya está lleno el arreglo, manda a incrementar su tamaño automáticamente.
+	int ObtenerElemento(size_t indice)
+	{
+		if (indice < capacity)
+			return elements[indice];
+		else
+			cout << "ERROR, se intentó obtener un valor en una posición inválida de este array. Posición: "
+			<< indice << endl;
+		return -INFINITY;
+	}
+
+	//unsigned variable sin signo (no puede ser negativo jamás)
+	// size_t es un unsigned long long, es decir, un número de 64 bits (enorme) que no puede ser negativo
+	// si usamos size_t para índices de arrays, no nos tenemos que preocupar por que sean valores negativos.
+	void AsignarElemento(size_t indice, int valor)
+	{
+		if (indice < capacity)
+			elements[indice] = valor;
+		else
+			cout << "ERROR, se intentó escribir un valor en una posición inválida de este array. Posición: "
+			<< indice << endl;
+	}
+
+	// te regresa el índice de la posición en el array donde hay un elemento con valor == value
+	int BuscarElemento(int valor)
+	{
+		for (int i = 0; i < count; i++)
+		{
+			if (elements[i] == valor)
+				return i;
+		}
+		// si sale del for es porque checamos todos los elementos y ninguno fue == valor.
+		return -1;
+	}
+
+	// Sirve para iterar sobre los elementos que tiene el array.
+	int GetCount()
+	{
+		return count;
+	}
 
 private:
 	// IMPORTANTE: las propiedades de elements, count, y capacity son privadas FORZOSAMENTE, por seguridad.

@@ -137,6 +137,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="OtherMain.cpp" />
     <ClCompile Include="ParametrosPorReferenciaComoSalidaDeFuncion.cpp" />
+    <ClCompile Include="Stack.cpp" />
     <ClCompile Include="TareaEjemplo.cpp" />
     <ClCompile Include="UserLoginData.cpp" />
     <ClCompile Include="WebPacket.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="ExplicacionIfndef.h" />
     <ClInclude Include="ExplicacionTemplates.h" />
     <ClInclude Include="ParametrosPorReferenciaComoSalidaDeFuncion.h" />
+    <ClInclude Include="Stack.h" />
     <ClInclude Include="TareaEjemplo.h" />
     <ClInclude Include="UserLoginData.h" />
     <ClInclude Include="WebPacket.h" />
