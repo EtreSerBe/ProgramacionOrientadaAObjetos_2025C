@@ -20,6 +20,7 @@ public:
 	{
 		if (count == capacity)
 		{
+			int oldCapacity = capacity;
 			if (capacity == 0)
 				capacity = 1;
 			else
@@ -27,15 +28,15 @@ public:
 			// capacity = capacity == 0 ? 1 : capacity * 2; // este sería el if de una línea que equivale al if-else de arriba
 			
 			// entonces está lleno y hay que pedir más memoria, copiar el arreglo actual al nuevo, y borrar el viejo.
-			int *arrayConMásMemoria = new int[capacity]; // trae el doble de memoria
-			for (int i = 0; i < capacity; i++)
+			int *arrayConMasMemoria = new int[capacity]; // trae el doble de memoria
+			for (int i = 0; i < oldCapacity; i++)
 			{
-				arrayConMásMemoria[i] = elements[i];
+				arrayConMasMemoria[i] = elements[i];
 			}
 			delete[] elements;
 
 			// reasignamos nuestra variable interna de elements, a que apunte a la dirección del arreglo nuevo con más memoria.
-			elements = arrayConMásMemoria;
+			elements = arrayConMasMemoria;
 
 			// En otras palabras, mandar a llamar la función Resize()
 		}
@@ -77,10 +78,33 @@ public:
 		return -1;
 	}
 
+	int QuitarUltimoElemento()
+	{
+		// si sí hay al menos un elemento, entonces sí lo podemos sacar.
+		if (count > 0)
+		{
+			count--; // nos basta hacer esto para que ese último elemento ya no se pueda acceder.
+			return elements[count];
+		}
+
+		// no se necesita el else porque si entró al if de arriba entonces ya va a hacer return y no
+		// llegaría a esta parte del código.
+		cout << "ERROR el dynamic array estaba vacío pero se intentó sacar un elemento de él." << endl;
+		return -INFINITY;
+	}
+
 	// Sirve para iterar sobre los elementos que tiene el array.
 	int GetCount()
 	{
 		return count;
+	}
+
+	void Print()
+	{
+		cout << "imprimiendo Array: " << endl;
+		for (int i = 0; i < count; i++)
+			cout << elements[i] << ", ";
+		cout << endl;
 	}
 
 private:

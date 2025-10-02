@@ -12,6 +12,8 @@ public:
 	// Inserta un elemento en el tope de la pila
 	void Push(int value)
 	{
+		int oldCapacity = capacity;
+
 		// checamos si alcanza la capacidad
 		if (count == capacity)
 		{
@@ -23,7 +25,7 @@ public:
 			// 1) pedimos más memoria dinámica
 			int* arrayConMasMemoria = new int[capacity];
 			// 2) copiamos todo del array original al nuevo
-			for (int i = 0; i < count; i++)
+			for (int i = 0; i < oldCapacity; i++)
 			{
 				arrayConMasMemoria[i] = elements[i];
 			}
