@@ -45,5 +45,4 @@ void MainQueues()
 	myQueue.Enqueue(7.7f);
 	myQueue.Print();
 
-
 }
