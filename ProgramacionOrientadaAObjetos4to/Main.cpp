@@ -44,6 +44,8 @@ class ExplicacionIfndef
 #include "StackComposicion.h"
 #include "Queue.h"
 
+#include "ExplicacionStatic.h"
+
 // Todos los defines se remplazan por el texto que tienen a la derecha.
 #define TAMANO_MY_INT_ARRAY 10
 #define MULTIPLICACION_2_X_3 2*3 
@@ -291,6 +293,9 @@ void ImprimirEsLunes()
 
 int main()
 {
+
+	MainExplicacionStatic();
+
 	MainQueues();
 
 	MainParametrosPorReferenciaComoSalidaDeFuncion();
@@ -368,7 +373,7 @@ int main()
 	// static_cast<void*>(myAuxPointer)
 	// static_cast
 	// cast es una interpretación de los bits/bytes de una variable como si fuera del tipo solicitado.
-	// int myCastedInt = (int)7.77;
+	// int myCastedInt = (int)7.77; // esto es interpretar un float (7.77) como si fuera un int (que nos dará 7, porque es entero).
 
 	// cast normalito, no estático
 	void* myCastedVoidPtr = (void*)&creadoPorFuncionEnVezDeConstructor;

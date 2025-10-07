@@ -3,7 +3,7 @@
 
 StackComposicion::StackComposicion(int in_capacity)
 {
-	data = DynamicArray(in_capacity);
+	// data = DynamicArray(in_capacity);
 }
 
 StackComposicion::~StackComposicion()

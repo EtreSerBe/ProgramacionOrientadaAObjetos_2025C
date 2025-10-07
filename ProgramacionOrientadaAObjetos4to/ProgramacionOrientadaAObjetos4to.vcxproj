@@ -133,6 +133,7 @@
     <ClCompile Include="DynamicArray.cpp" />
     <ClCompile Include="EjerciciosMemoriaDinamica.cpp" />
     <ClCompile Include="ExplicacionIfndef.cpp" />
+    <ClCompile Include="ExplicacionStatic.cpp" />
     <ClCompile Include="ExplicacionTemplates.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="OtherMain.cpp" />
@@ -151,6 +152,7 @@
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="EjerciciosMemoriaDinamica.h" />
     <ClInclude Include="ExplicacionIfndef.h" />
+    <ClInclude Include="ExplicacionStatic.h" />
     <ClInclude Include="ExplicacionTemplates.h" />
     <ClInclude Include="ParametrosPorReferenciaComoSalidaDeFuncion.h" />
     <ClInclude Include="Queue.h" />

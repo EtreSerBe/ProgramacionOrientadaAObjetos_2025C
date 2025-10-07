@@ -10,21 +10,28 @@ using namespace std;
 class DynamicArray
 {
 public:
+	static const int maxCapacity = 1024;
+
 	DynamicArray(int capacity = 0);
 
 	~DynamicArray();
 
 	//Append(x) añadir el valor x en la posición última que se ha ocupado del array.
 	// si ya está lleno el arreglo, manda a incrementar su tamaño automáticamente.
-	void Append(int value)
+	void Append(const int value) 
 	{
 		if (count == capacity)
 		{
 			int oldCapacity = capacity;
 			if (capacity == 0)
 				capacity = 1;
-			else
+			else if (capacity * 2 < maxCapacity)
 				capacity *= 2;
+			else
+			{
+				cout << "ERROR: se excedió el tamaño máximo del dynamic array" << endl;
+				return;
+			}
 			// capacity = capacity == 0 ? 1 : capacity * 2; // este sería el if de una línea que equivale al if-else de arriba
 			
 			// entonces está lleno y hay que pedir más memoria, copiar el arreglo actual al nuevo, y borrar el viejo.
@@ -44,7 +51,7 @@ public:
 		count++; // y ahora tiene dentro 1 elementos más.
 	}
 
-	int ObtenerElemento(size_t indice)
+	int ObtenerElemento(const size_t indice) const
 	{
 		if (indice < capacity)
 			return elements[indice];
@@ -57,7 +64,7 @@ public:
 	//unsigned variable sin signo (no puede ser negativo jamás)
 	// size_t es un unsigned long long, es decir, un número de 64 bits (enorme) que no puede ser negativo
 	// si usamos size_t para índices de arrays, no nos tenemos que preocupar por que sean valores negativos.
-	void AsignarElemento(size_t indice, int valor)
+	void AsignarElemento(const size_t indice, const int valor)
 	{
 		if (indice < capacity)
 			elements[indice] = valor;
@@ -67,7 +74,7 @@ public:
 	}
 
 	// te regresa el índice de la posición en el array donde hay un elemento con valor == value
-	int BuscarElemento(int valor)
+	int BuscarElemento(const int valor) const
 	{
 		for (int i = 0; i < count; i++)
 		{
@@ -94,12 +101,12 @@ public:
 	}
 
 	// Sirve para iterar sobre los elementos que tiene el array.
-	int GetCount()
+	int GetCount() const
 	{
 		return count;
 	}
 
-	void Print()
+	void Print() const
 	{
 		cout << "imprimiendo Array: " << endl;
 		for (int i = 0; i < count; i++)
