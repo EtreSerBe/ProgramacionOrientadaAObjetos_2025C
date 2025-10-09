@@ -108,11 +108,19 @@ public:
 
 	void Print() const
 	{
-		cout << "imprimiendo Array: " << endl;
-		for (int i = 0; i < count; i++)
-			cout << elements[i] << ", ";
-		cout << endl;
+		cout << "imprimiendo Array: " << endl;  // aporta 1 línea ejecutada
+		for (int i = 0; i < count; i++)			// aporta count líneas ejecutadas (porque i va desde 0 hasta count)
+			cout << elements[i] << ", ";		// aporta count líneas ejecutadas porque está dentro del for que va de 0 hasta count
+		cout << endl;							// aporta 1 línea ejecutada
+		// 1 + count + count + 1 = 2 + count*2
+		// count = 10 -> 2 + count*2 = 2 + (10)*2 == 22
+		// count = 1000 -> 2 + count*2 = 2 + (1000)*2 == 2002
+		// La complejidad en tiempo de esta función está dictada por la cantidad de elementos en count.
+		// por cada elemento en count que haya, se ejecuta x-líneas más, donde x son la cantidad de líneas dentro del for.
 	}
+
+	// si yo tengo count = 10, se ejecutan en total 22 líneas de código en Print.
+	// ¿si count fuera 1000, cuántas líneas se ejecutarían?
 
 private:
 	// IMPORTANTE: las propiedades de elements, count, y capacity son privadas FORZOSAMENTE, por seguridad.

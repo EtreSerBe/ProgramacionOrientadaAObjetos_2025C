@@ -45,6 +45,7 @@ class ExplicacionIfndef
 #include "Queue.h"
 
 #include "ExplicacionStatic.h"
+#include "LinkedList.h"
 
 // Todos los defines se remplazan por el texto que tienen a la derecha.
 #define TAMANO_MY_INT_ARRAY 10
@@ -291,8 +292,27 @@ void ImprimirEsLunes()
 	// tipoDeData + Nombre +( parámetros* ) +{ otroCódigo }.
 	// Main es una función que debe regresar un valor entero (int).
 
+#define TAMANO_EJEMPLO_CUADRATICO 2
+
 int main()
 {
+	DemostracionLinkedList();
+
+
+	// arreglo de N*N donde N es el número de elementos. Y N*N = N^2
+	int cuadratico[TAMANO_EJEMPLO_CUADRATICO][TAMANO_EJEMPLO_CUADRATICO];
+	int contadorDePrints = 0;
+	for (size_t y = 0; y < TAMANO_EJEMPLO_CUADRATICO; y++)
+	{
+		for (size_t x = 0; x < TAMANO_EJEMPLO_CUADRATICO; x++)
+		{
+			cout << "X:" << x << " Y:" << y << ", ";
+			contadorDePrints++;
+		}
+		cout << "Contador de prints fue " << contadorDePrints << 
+			" después del for interno número: " << y << endl;
+	}
+	cout << endl;
 
 	MainExplicacionStatic();
 
@@ -312,6 +332,8 @@ int main()
 	// aquí ya se necesitaría otra vez el resize, porque se acaban los espacios disponibles,
 	// y ahora tendríamos un array de 10*2 espacios, de los cuales tenemos ocupados 11.
 	myDArray.Append(10);
+	myDArray.Print();
+
 
 	cout << "imprimiendo el array dinámico" << endl;
 	for (int i = 0; i < myDArray.GetCount(); i++)
