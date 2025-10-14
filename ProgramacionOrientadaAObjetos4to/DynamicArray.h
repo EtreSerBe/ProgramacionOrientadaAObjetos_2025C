@@ -51,6 +51,63 @@ public:
 		count++; // y ahora tiene dentro 1 elementos más.
 	}
 
+	bool InsertarDespuesDeValor(int valorAEncontrar, int valorAInsertar)
+	{
+		// un for para buscar el índice del valor a encontrar
+		for (int i = 0; i < count; i++)
+		{
+			if (valorAEncontrar == elements[i])
+			{
+				// además, tenemos que checar si se necesita hacer el resize. 
+				// si sí se necesita pues lo haces.
+				if (count == capacity)
+				{
+					int oldCapacity = capacity;
+					if (capacity == 0)
+						capacity = 1;
+					else if (capacity * 2 < maxCapacity)
+						capacity *= 2;
+					else
+					{
+						cout << "ERROR: se excedió el tamaño máximo del dynamic array" << endl;
+						return false;
+					}
+					// capacity = capacity == 0 ? 1 : capacity * 2; // este sería el if de una línea que equivale al if-else de arriba
+
+					// entonces está lleno y hay que pedir más memoria, copiar el arreglo actual al nuevo, y borrar el viejo.
+					int* arrayConMasMemoria = new int[capacity]; // trae el doble de memoria
+					for (int i = 0; i < oldCapacity; i++)
+					{
+						arrayConMasMemoria[i] = elements[i];
+					}
+					delete[] elements;
+
+					// reasignamos nuestra variable interna de elements, a que apunte a la dirección del arreglo nuevo con más memoria.
+					elements = arrayConMasMemoria;
+
+					// En otras palabras, mandar a llamar la función Resize()
+				}
+
+				// entonces ya lo encontramos y hay que poner que i+1 es igual a valorAInsertar
+				// pero para no perder los valores que ya estaban hay que recorrer todos los 
+				// demás elementos una posición a la derecha, empezando desde el final
+				for (int j = count; j > i; j--)
+				{
+					elements[j] = elements[j - 1];
+				}
+				// finalmente ponemos el valor a insertar en la posición i+1
+				elements[i + 1] = valorAInsertar;
+				count++;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	// Insertar 0, después de 1
+	// [1, 2, 3, 4, 5, X, X, X]
+	// [1, 0, 2, 3, 4, 5, X, X]
+
 	int ObtenerElemento(const size_t indice) const
 	{
 		if (indice < capacity)

@@ -32,6 +32,12 @@ public:
 		first = nullptr; // como no se va a usar ahorita todavía, lo ponemos como nullptr.
 	}
 
+	// nada más por el estándar de cómo se llama la función en las listas ligadas.
+	void PushBack(const T value)
+	{
+		Append(value);
+	}
+
 	// Añade un nodo con el valor "value" al final de la lista ligada.
 	void Append(const T value)
 	{
@@ -61,6 +67,125 @@ public:
 		count++;
 	}
 
+	// por ejemplo: insertar "Pepe" después de "Juan"
+	bool InsertAfterValue(T valorAEncontrar, T valorAInsertar)
+	{
+		// encontrar el nodo donde está valorAEncontrar
+		// comenzamos al inicio de la lista (el nodo first)
+		Node* nodoActual = first;
+		// y avanzamos el "next" de los nodos, checando si su valor es valorAEncontrar,
+		// 
+		// y si no lo encontramos, regresamos false porque nunca lo encontramos.		// 
+		while (nodoActual != nullptr)
+		{
+			// checamos si este nodo tiene el valorAEncontrar
+			if (nodoActual->data == valorAEncontrar)
+			{
+				// si sí lo es, pues insertamos el nuevo valor después de este.
+				// primero creamos un nuevo nodo que va a tener el valorAInsertar
+				Node* newNode = new Node(valorAInsertar);
+				// el nuevo->next ahora al que antes apuntaba nodoActual->next
+				newNode->next = nodoActual->next;
+
+				// el nodoActual->next ahora apunta al nuevo
+				nodoActual->next = newNode;
+
+				count++;
+
+				// como ya lo insertamos, ya no hay nada que hacer y nos salimos.
+				return true;
+			}
+
+			nodoActual = nodoActual->next; // el nodo actual se mueve al que le sigue en la lista.
+		}
+
+		// ya no hay más nodos que checar, no se encontró entonces no insertamos nada y regresamos false.
+		cout << "Advertencia, no existe el valor: " << valorAEncontrar << " en esta lista ligada" << endl;
+		return false;
+	}
+
+	// Función que nos quite el primer nodo que tenga el valor dado.
+	bool BorrarNodoPorValor(const T valorDelNodoABorrar)
+	{
+		if (count == 0)
+		{
+			// no hay nada que borrar porque está vacía.
+			cout << "Advertencia, tratando de borrar de una lista ligada vacía en BorrarNodoPorValor()." << endl;
+			return false;
+		}
+		// hay que encontrar el primer nodo que tenga data == valorDelNodoABorrar
+		// encontrar el nodo donde está valorAEncontrar
+		// comenzamos al inicio de la lista (el nodo first)
+		Node* nodoActual = first;
+		if (nodoActual->data == valorDelNodoABorrar)
+		{
+			// es un caso especial porque hay que reasignar al first.
+			first = nodoActual->next;
+			delete nodoActual;
+			count--;
+			return true;
+		}
+
+		while (nodoActual->next != nullptr)
+		{
+			// checamos si EL NODO QUE SIGUE este nodo es a quien buscamos (el que tiene valorDelNodoABorrar)
+			if (nodoActual->next->data == valorDelNodoABorrar)
+			{
+				// sí lo encontramos, entonces lo borramos.
+				Node *nodoABorrar = nodoActual->next;
+				// el nodo actual apunta al que sigue del que sigue
+				
+				nodoActual->next = nodoActual->next->next;
+
+				// y ahora sí borramos a ese nodo auxiliar.
+				delete nodoABorrar;
+
+				count--;
+				return true;
+			}
+
+			nodoActual = nodoActual->next; // el nodo actual se mueve al que le sigue en la lista.
+		}
+
+		// si se acaba el while, entonces no lo encontramos, 
+
+
+		// entonces no borramos nada y regresamos false.
+		cout << "Advertencia, no existe el valor: " << valorDelNodoABorrar << " en esta lista ligada" << endl;
+		return false;
+	}
+
+	// regresa el valor almacenado en el nodo del inicio de la lista ligada
+	T Front()
+	{
+		if(first != nullptr)
+			return first->data;
+
+		// si sí es nulo, entonces le imprimes un error al usuario: 
+		cout << "Advertencia se pidió el front de la lista ligada pero está vacía." << endl;
+		return T{}; // regresamos el valor T por defecto, según el tipo que sea T.
+	}
+
+	// regresa el valor almacenado en el nodo al final de la lista ligada
+	T Back()
+	{
+		if (count == 0)
+		{
+			cout << "Advertencia se pidió el Back de la lista ligada pero está vacía." << endl;
+			return T{}; // regresamos el valor T por defecto, según el tipo que sea T.
+		}
+
+		// ciclo para llegar hasta el último nodo de la lista.
+		Node* nodoActual = first;
+		while (nodoActual->next != nullptr)
+		{
+			nodoActual = nodoActual->next;
+		}
+
+		// ya llegamos al final, entonces regresamos la data de ese nodo.
+		return nodoActual->data;
+	}
+
 	// función que nos da el valor (los datos) del Nodo i-ésimo de la lista.
 	T GetByIndex(const size_t indice) const  // como es size_t no puede ser negativo.
 	{
@@ -81,6 +206,17 @@ public:
 		// ya llegaste al i-ésimo que te pidieron, y retornas su valor
 		return nodoActual->data;
 	}
+
+	/* LAS DE TAREA */
+	//  https://cplusplus.com/reference/.
+	// PushFront()
+
+	// PopFront()
+
+	// Print()
+
+	// Encontrar dónde nos falta liberar memoria en esta clase. Si sí hace falta impleméntenlo, 
+	// si no hace falta, expliquen por qué.
 
 private:
 	// clase anidada.
