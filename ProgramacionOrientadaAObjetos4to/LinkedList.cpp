@@ -42,4 +42,6 @@ void DemostracionLinkedList()
 	// si yo mando a llamar la función Front cuando la lista ligada está vacía.
 	myLinkedList.Front();
 	myLinkedList.Back();
+
+	/* PRUEBAS DE FUNCIONES QUE HICIERON PARA SU TAREA */
 }

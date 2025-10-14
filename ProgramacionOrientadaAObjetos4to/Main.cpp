@@ -320,26 +320,7 @@ int main()
 
 	MainParametrosPorReferenciaComoSalidaDeFuncion();
 
-	DynamicArray myDArray = DynamicArray(5);
-
-	for (int i = 0; i < 6; i++)
-	{
-		myDArray.Append(i);
-	}
-	myDArray.Append(7);
-	myDArray.Append(8);	
-	myDArray.Append(9);
-	// aquí ya se necesitaría otra vez el resize, porque se acaban los espacios disponibles,
-	// y ahora tendríamos un array de 10*2 espacios, de los cuales tenemos ocupados 11.
-	myDArray.Append(10);
-	myDArray.Print();
-
-
-	cout << "imprimiendo el array dinámico" << endl;
-	for (int i = 0; i < myDArray.GetCount(); i++)
-	{
-		cout << myDArray.ObtenerElemento(i) << endl;
-	}
+	DemostracionDynamicArray();
 
 	Stack myStack = Stack(5);
 	for (int i = 0; i < 6; i++)
