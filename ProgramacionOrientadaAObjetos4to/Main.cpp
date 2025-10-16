@@ -46,6 +46,7 @@ class ExplicacionIfndef
 
 #include "ExplicacionStatic.h"
 #include "LinkedList.h"
+#include "SentinelLinkedList.h"
 
 // Todos los defines se remplazan por el texto que tienen a la derecha.
 #define TAMANO_MY_INT_ARRAY 10
@@ -296,6 +297,8 @@ void ImprimirEsLunes()
 
 int main()
 {
+	DemostracionSentinelLinkedList();
+
 	DemostracionLinkedList();
 
 

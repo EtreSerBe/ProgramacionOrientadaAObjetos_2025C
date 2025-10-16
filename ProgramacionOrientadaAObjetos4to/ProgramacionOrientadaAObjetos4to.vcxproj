@@ -130,6 +130,7 @@
     <ClCompile Include="ArchivoEjemplo2.cpp" />
     <ClCompile Include="ArchivosEjemplo.cpp" />
     <ClCompile Include="ClaseConstructoresYDestructores.cpp" />
+    <ClCompile Include="DoubleLinkedList.cpp" />
     <ClCompile Include="DynamicArray.cpp" />
     <ClCompile Include="EjerciciosMemoriaDinamica.cpp" />
     <ClCompile Include="ExplicacionIfndef.cpp" />
@@ -140,6 +141,7 @@
     <ClCompile Include="OtherMain.cpp" />
     <ClCompile Include="ParametrosPorReferenciaComoSalidaDeFuncion.cpp" />
     <ClCompile Include="Queue.cpp" />
+    <ClCompile Include="SentinelLinkedList.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="StackComposicion.cpp" />
     <ClCompile Include="TareaEjemplo.cpp" />
@@ -150,6 +152,7 @@
     <ClInclude Include="ArchivoEjemplo2.h" />
     <ClInclude Include="ArchivosEjemplo.h" />
     <ClInclude Include="ClaseConstructoresYDestructores.h" />
+    <ClInclude Include="DoubleLinkedList.h" />
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="EjerciciosMemoriaDinamica.h" />
     <ClInclude Include="ExplicacionIfndef.h" />
@@ -158,6 +161,7 @@
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="ParametrosPorReferenciaComoSalidaDeFuncion.h" />
     <ClInclude Include="Queue.h" />
+    <ClInclude Include="SentinelLinkedList.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="StackComposicion.h" />
     <ClInclude Include="TareaEjemplo.h" />

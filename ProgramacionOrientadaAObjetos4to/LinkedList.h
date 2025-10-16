@@ -120,8 +120,11 @@ public:
 		if (nodoActual->data == valorDelNodoABorrar)
 		{
 			// es un caso especial porque hay que reasignar al first.
+			
 			first = nodoActual->next;
 			delete nodoActual;
+			if (count == 1)
+				first = nullptr;
 			count--;
 			return true;
 		}
