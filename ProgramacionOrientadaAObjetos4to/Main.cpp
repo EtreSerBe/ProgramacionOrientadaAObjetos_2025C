@@ -48,6 +48,8 @@ class ExplicacionIfndef
 #include "LinkedList.h"
 #include "SentinelLinkedList.h"
 
+#include "ExplicacionDirectivasDePreprocesador.h"
+
 // Todos los defines se remplazan por el texto que tienen a la derecha.
 #define TAMANO_MY_INT_ARRAY 10
 #define MULTIPLICACION_2_X_3 2*3 
@@ -297,6 +299,8 @@ void ImprimirEsLunes()
 
 int main()
 {
+	DemostracionDirectivasDePreprocesador();
+
 	DemostracionSentinelLinkedList();
 
 	DemostracionLinkedList();

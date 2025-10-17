@@ -103,7 +103,7 @@ public:
 	}
 
 	// Nos regresa los datos guardados el nodo en la i-ésima posición desde el inicio.
-	T ObtenerValorPorIndice(int indice)
+	T ObtenerValorPorIndice(size_t indice)
 	{
 		if (indice >= count)
 		{

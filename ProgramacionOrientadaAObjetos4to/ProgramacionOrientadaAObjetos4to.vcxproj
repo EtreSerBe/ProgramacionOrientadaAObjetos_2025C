@@ -133,6 +133,7 @@
     <ClCompile Include="DoubleLinkedList.cpp" />
     <ClCompile Include="DynamicArray.cpp" />
     <ClCompile Include="EjerciciosMemoriaDinamica.cpp" />
+    <ClCompile Include="ExplicacionDirectivasDePreprocesador.cpp" />
     <ClCompile Include="ExplicacionIfndef.cpp" />
     <ClCompile Include="ExplicacionStatic.cpp" />
     <ClCompile Include="ExplicacionTemplates.cpp" />
@@ -155,6 +156,7 @@
     <ClInclude Include="DoubleLinkedList.h" />
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="EjerciciosMemoriaDinamica.h" />
+    <ClInclude Include="ExplicacionDirectivasDePreprocesador.h" />
     <ClInclude Include="ExplicacionIfndef.h" />
     <ClInclude Include="ExplicacionStatic.h" />
     <ClInclude Include="ExplicacionTemplates.h" />
