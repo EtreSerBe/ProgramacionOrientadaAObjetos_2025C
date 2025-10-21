@@ -179,6 +179,14 @@ public:
 	// si yo tengo count = 10, se ejecutan en total 22 líneas de código en Print.
 	// ¿si count fuera 1000, cuántas líneas se ejecutarían?
 
+
+	// Mete un valor al final del dynamic array
+	void PushBack(int value)
+	{
+		Append(value);
+	}
+
+
 private:
 	// IMPORTANTE: las propiedades de elements, count, y capacity son privadas FORZOSAMENTE, por seguridad.
 

@@ -53,5 +53,11 @@ void DemostracionDynamicArray()
 
 
 	/* PRUEBAS DE LAS FUNCIONES QUE USTEDES HARÁN PARA LA TAREA */
+	myDArray.PushBack(1984);
+	cout << "imprimiendo el array dinámico" << endl;
+	for (int i = 0; i < myDArray.GetCount(); i++)
+	{
+		cout << myDArray.ObtenerElemento(i) << endl;
+	}
 
 }
