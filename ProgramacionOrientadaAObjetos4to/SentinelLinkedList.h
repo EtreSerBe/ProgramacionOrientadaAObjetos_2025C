@@ -159,7 +159,7 @@ public:
 		if (nodoABorrar == nullptr)
 		{
 			cout << "no se encontró el valor a borrar: " << value << " en esta lista con centinela." << endl;
-			return T{}; // regresamos un valor por defecto.
+			return;
 		}
 
 		Delete(nodoABorrar);

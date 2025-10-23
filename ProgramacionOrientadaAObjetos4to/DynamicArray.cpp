@@ -32,6 +32,7 @@ void DemostracionDynamicArray()
 {
 	DynamicArray myDArray = DynamicArray(5);
 
+
 	for (int i = 0; i < 6; i++)
 	{
 		myDArray.Append(i);

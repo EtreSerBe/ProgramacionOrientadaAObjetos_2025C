@@ -127,9 +127,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animal.cpp" />
     <ClCompile Include="ArchivoEjemplo2.cpp" />
     <ClCompile Include="ArchivosEjemplo.cpp" />
     <ClCompile Include="ClaseConstructoresYDestructores.cpp" />
+    <ClCompile Include="ClaseVirtualPura.cpp" />
+    <ClCompile Include="CosasViejasDelMain.cpp" />
     <ClCompile Include="DoubleLinkedList.cpp" />
     <ClCompile Include="DynamicArray.cpp" />
     <ClCompile Include="EjerciciosMemoriaDinamica.cpp" />
@@ -137,22 +140,33 @@
     <ClCompile Include="ExplicacionIfndef.cpp" />
     <ClCompile Include="ExplicacionStatic.cpp" />
     <ClCompile Include="ExplicacionTemplates.cpp" />
+    <ClCompile Include="Gato.cpp" />
+    <ClCompile Include="Humano.cpp" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="OtherMain.cpp" />
     <ClCompile Include="ParametrosPorReferenciaComoSalidaDeFuncion.cpp" />
+    <ClCompile Include="Perro.cpp" />
+    <ClCompile Include="Pollo.cpp" />
     <ClCompile Include="Queue.cpp" />
     <ClCompile Include="SentinelLinkedList.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="StackComposicion.cpp" />
     <ClCompile Include="TareaEjemplo.cpp" />
     <ClCompile Include="UserLoginData.cpp" />
+    <ClCompile Include="Usuario.cpp" />
+    <ClCompile Include="UsuarioAdmin.cpp" />
+    <ClCompile Include="UsuarioAlumno.cpp" />
+    <ClCompile Include="UsuarioProfesor.cpp" />
     <ClCompile Include="WebPacket.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animal.h" />
     <ClInclude Include="ArchivoEjemplo2.h" />
     <ClInclude Include="ArchivosEjemplo.h" />
     <ClInclude Include="ClaseConstructoresYDestructores.h" />
+    <ClInclude Include="ClaseVirtualPura.h" />
+    <ClInclude Include="CosasViejasDelMain.h" />
     <ClInclude Include="DoubleLinkedList.h" />
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="EjerciciosMemoriaDinamica.h" />
@@ -160,14 +174,22 @@
     <ClInclude Include="ExplicacionIfndef.h" />
     <ClInclude Include="ExplicacionStatic.h" />
     <ClInclude Include="ExplicacionTemplates.h" />
+    <ClInclude Include="Gato.h" />
+    <ClInclude Include="Humano.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="ParametrosPorReferenciaComoSalidaDeFuncion.h" />
+    <ClInclude Include="Perro.h" />
+    <ClInclude Include="Pollo.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="SentinelLinkedList.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="StackComposicion.h" />
     <ClInclude Include="TareaEjemplo.h" />
     <ClInclude Include="UserLoginData.h" />
+    <ClInclude Include="Usuario.h" />
+    <ClInclude Include="UsuarioAdmin.h" />
+    <ClInclude Include="UsuarioAlumno.h" />
+    <ClInclude Include="UsuarioProfesor.h" />
     <ClInclude Include="WebPacket.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
