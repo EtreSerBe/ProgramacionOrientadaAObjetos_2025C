@@ -56,6 +56,7 @@ class ExplicacionIfndef
 #include "Humano.h"
 
 #include "UsuarioProfesor.h"
+#include "Vector2D.h"
 
 
 
@@ -63,6 +64,8 @@ class ExplicacionIfndef
 
 int main()
 {
+
+	DemostracionSobrecargaDeOperadores();
 
 	DemostracionHerenciaDeClases();
 

@@ -34,15 +34,15 @@ void Humano::FuncionEnClasePadrePeroQueNoEsVirtual()
 
 void DemostracionHerenciaDeClases()
 {
-    //Perro myPerro;
-    //myPerro.Ladrar();
-    //myPerro.HacerRuido();
-    //myPerro.FuncionEnClasePadrePeroQueNoEsVirtual();
+    Perro myPerro;
+    myPerro.Ladrar();
+    myPerro.HacerRuido();
+    myPerro.FuncionEnClasePadrePeroQueNoEsVirtual();
 
-    //Gato myGato;
-    //myGato.Maullar();
-    //myGato.HacerRuido();
-    //myGato.FuncionEnClasePadrePeroQueNoEsVirtual();
+    Gato myGato;
+    myGato.Maullar();
+    myGato.HacerRuido();
+    myGato.FuncionEnClasePadrePeroQueNoEsVirtual();
 
     //// Código de error E0322->
     //// Si les dice que la función X virtual pura no tiene ningún elemento que la invalide,
@@ -50,13 +50,13 @@ void DemostracionHerenciaDeClases()
     //// que esta clase NO ha hecho override. Por eso dice que la clase es abstracta.
     //// La solución es hacerle override a las funciones que te diga y darles cuerpo (definición).
 
-    //Humano myHumano;
-    //myHumano.Hablar();
-    //myHumano.HacerRuido();
-    //myHumano.FuncionEnClasePadrePeroQueNoEsVirtual();
+    Humano myHumano;
+    myHumano.Hablar();
+    myHumano.HacerRuido();
+    myHumano.FuncionEnClasePadrePeroQueNoEsVirtual();
 
-    //Pollo myPollo;
-    //myPollo.FuncionEnClasePadrePeroQueNoEsVirtual();
+    Pollo myPollo;
+    myPollo.FuncionEnClasePadrePeroQueNoEsVirtual();
 
     // Con una variable del tipo de la clase base, tú puedes apuntar a una variable de cualquier clase hija.
     Animal* animalHumano = new Humano();
@@ -65,12 +65,12 @@ void DemostracionHerenciaDeClases()
     // y esta función no tiene virtual en el padre.
     animalHumano->FuncionEnClasePadrePeroQueNoEsVirtual(); 
 
-    //Animal* arrayAnimales[5] = { &myPerro, &myGato, &myPollo, &myHumano, animalHumano };
-    //for (int i = 0; i < 5; i++)
-    //{
-    //    arrayAnimales[i]->HacerRuido();
-    //    arrayAnimales[i]->FuncionEnClasePadrePeroQueNoEsVirtual();
-    //}
+    Animal* arrayAnimales[5] = { &myPerro, &myGato, &myPollo, &myHumano, animalHumano };
+    for (int i = 0; i < 5; i++)
+    {
+        arrayAnimales[i]->HacerRuido();
+        arrayAnimales[i]->FuncionEnClasePadrePeroQueNoEsVirtual();
+    }
 
     Animal* animalPerro= new Perro();
     delete animalPerro; // este de aquí llamará al destructor de animal
