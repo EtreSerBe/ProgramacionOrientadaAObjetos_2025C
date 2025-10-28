@@ -18,3 +18,8 @@ void Perro::HacerRuido()
 {
     Ladrar();
 }
+
+void Perro::FuncionEnClasePadrePeroQueNoEsVirtual()
+{
+    cout << "Soy de la clase animal, No hice override porque no se puede, y soy un Perro" << endl;
+}

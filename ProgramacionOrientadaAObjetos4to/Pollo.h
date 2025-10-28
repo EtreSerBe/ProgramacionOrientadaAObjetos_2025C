@@ -11,5 +11,7 @@ public:
     void Piar();
 
     void HacerRuido() override;
+
+    void FuncionEnClasePadrePeroQueNoEsVirtual();//  override;
 };
 

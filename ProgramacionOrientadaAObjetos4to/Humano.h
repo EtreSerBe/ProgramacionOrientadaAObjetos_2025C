@@ -7,6 +7,8 @@ class Humano :
 public:
     Humano();
 
+    ~Humano();
+
     bool puedeHablar;
 
     void Hablar();
@@ -15,6 +17,8 @@ public:
     // entonces esta clase sigue siendo Abstracta (que tiene al menos un método sin definir (es decir, virtual puro))
     // Tú NO puedes instanciar una clase abstracta.
     void HacerRuido() override;
+
+    void FuncionEnClasePadrePeroQueNoEsVirtual(); 
 };
 
 void DemostracionHerenciaDeClases();

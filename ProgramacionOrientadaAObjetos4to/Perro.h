@@ -17,5 +17,6 @@ public:
 
     // La palabra clave "override" especifica que estás modificando la funcionalidad de la clase padre para dicha función.
     void HacerRuido() override;
+    void FuncionEnClasePadrePeroQueNoEsVirtual();//  override;
 };
 

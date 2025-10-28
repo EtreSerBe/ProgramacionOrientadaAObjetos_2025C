@@ -11,5 +11,7 @@ public:
     void Maullar();
 
     void HacerRuido() override;
+
+    void FuncionEnClasePadrePeroQueNoEsVirtual();//  override;
 };
 

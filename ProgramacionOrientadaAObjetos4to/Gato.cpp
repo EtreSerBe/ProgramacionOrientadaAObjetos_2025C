@@ -19,3 +19,8 @@ void Gato::HacerRuido()
 {
     Maullar();
 }
+
+void Gato::FuncionEnClasePadrePeroQueNoEsVirtual()
+{
+    cout << "Soy de la clase animal, No hice override porque no se puede, y soy un Gato" << endl;
+}

@@ -17,3 +17,8 @@ void Pollo::HacerRuido()
 {
 	Piar();
 }
+
+void Pollo::FuncionEnClasePadrePeroQueNoEsVirtual()
+{
+	cout << "Soy de la clase animal, No hice override porque no se puede, y soy un Pollo" << endl;
+}
