@@ -58,6 +58,7 @@ class ExplicacionIfndef
 #include "UsuarioProfesor.h"
 #include "Vector2D.h"
 
+#include "BinarySearchTree.h"
 
 
 #define TAMANO_EJEMPLO_CUADRATICO 2
@@ -65,18 +66,23 @@ class ExplicacionIfndef
 int main()
 {
 
+	DemostracionBinarySearchTree();
+
+	DemostracionSentinelLinkedList();
+
+
+	DemostracionLinkedList();
+
 	DemostracionSobrecargaDeOperadores();
 
 	DemostracionHerenciaDeClases();
 
-	DemostracionHerenciaClaseUsuario();
+	// DemostracionHerenciaClaseUsuario();
 
 
 	DemostracionDirectivasDePreprocesador();
 
-	DemostracionSentinelLinkedList();
 
-	DemostracionLinkedList();
 
 
 	// arreglo de N*N donde N es el número de elementos. Y N*N = N^2

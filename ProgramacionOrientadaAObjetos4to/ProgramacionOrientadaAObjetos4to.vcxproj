@@ -130,6 +130,7 @@
     <ClCompile Include="Animal.cpp" />
     <ClCompile Include="ArchivoEjemplo2.cpp" />
     <ClCompile Include="ArchivosEjemplo.cpp" />
+    <ClCompile Include="BinarySearchTree.cpp" />
     <ClCompile Include="ClaseConstructoresYDestructores.cpp" />
     <ClCompile Include="ClaseVirtualPura.cpp" />
     <ClCompile Include="CosasViejasDelMain.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="Animal.h" />
     <ClInclude Include="ArchivoEjemplo2.h" />
     <ClInclude Include="ArchivosEjemplo.h" />
+    <ClInclude Include="BinarySearchTree.h" />
     <ClInclude Include="ClaseConstructoresYDestructores.h" />
     <ClInclude Include="ClaseVirtualPura.h" />
     <ClInclude Include="CosasViejasDelMain.h" />

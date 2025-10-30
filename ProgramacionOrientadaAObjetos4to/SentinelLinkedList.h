@@ -19,7 +19,16 @@ public:
 	~SentinelLinkedList()
 	{
 		// ¡OJO! El nodo centinela solamente se borra cuando se borra la lista.
+		Node* nodoActual = NIL->next;
+		while (nodoActual != NIL)
+		{
+			Node* nodoABorrar = nodoActual;
+			nodoActual = nodoActual->next;
+			delete nodoABorrar;
+		}
+
 		delete NIL;
+		cout << "Sentinel linked list destruida con éxito" << endl;
 	}
 
 	// En esta versión no necesita ningún tipo de chequeo. Además es tiempo constante O(1)
