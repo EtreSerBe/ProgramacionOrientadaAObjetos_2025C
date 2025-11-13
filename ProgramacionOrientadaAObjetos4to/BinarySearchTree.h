@@ -220,7 +220,59 @@ public:
 			return true;
 		}
 
+		// Si llegó hasta esta parte del código, entonces estamos en el Caso #3,
+		// el nodo a borrar tiene sus dos hijos.
+		// 1. Encontrar sucesor 'Y' del nodo a Borrar 'X'
+		Node* nodoSucesor = Sucesor(nodoABorrar);
+		Node* hijoDerechoDelSucesor = nodoSucesor->rightChild;
+		Node* padreDelSucesor = nodoSucesor->parent;
 
+
+		// El resto del subárbol derecho de X se vuelve el subárbol derecho de ‘Y’.
+		// En pocas palabras: el sucesor ahora apunta hacia donde antes apuntaba el nodo a borrar
+		nodoSucesor->leftChild = nodoABorrar->leftChild;
+		// Necesitamos asegurarnos de que el sucesor NO es el mismo hijo derecho del nodo a borrar
+		if(nodoSucesor != nodoABorrar->rightChild)
+			nodoSucesor->rightChild = nodoABorrar->rightChild;
+
+		nodoSucesor->leftChild->parent = nodoSucesor;
+		
+		if (nodoSucesor->rightChild != nullptr) // tenemos que asegurarnos de que no es nulo.
+		{
+			nodoSucesor->rightChild->parent = nodoSucesor;
+		}
+
+		// Ahora hacemos la conexión del sucesor con el padre del nodo que se va a borrar.
+		nodoSucesor->parent = nodoABorrar->parent;
+		// Primero checamos que el parent no sea nullptr (el caso donde se está borrando al nodo Raíz)
+		if (nodoABorrar->parent != nullptr)
+		{
+			// Necesitamos saber si el nodo a borrar era hijo izquierdo o derecho de su padre
+			if (nodoABorrar->parent->leftChild == nodoABorrar)
+				nodoSucesor->parent->leftChild = nodoSucesor;
+			else
+				nodoSucesor->parent->rightChild = nodoSucesor;
+		}
+		else // si entra a este else, se está borrando al nodo raíz
+		{
+			// tenemos que actualizar el puntero a la raíz
+			root = nodoSucesor;
+		}
+
+		// NOTA: Según yo, a fuerzas es el hijo izquierdo, porque sino no sería el sucesor.
+		if (padreDelSucesor != nullptr)
+			padreDelSucesor->leftChild = hijoDerechoDelSucesor;
+
+		// SOLO SI EL SUCESOR TIENE HIJO DERECHO
+		if (hijoDerechoDelSucesor != nullptr)
+		{
+			// El hijo derecho de ‘Y’ antes de moverlo se recorre a la posición donde estaba 'Y'
+			// Reconectar al papá de Y con el hijo derecho de Y y viceversa
+			hijoDerechoDelSucesor->parent = padreDelSucesor;
+		}
+
+
+		delete nodoABorrar;
 		return true;
 	}
 
@@ -339,9 +391,14 @@ private:
 
 		hijoDeNodoABorrar->parent = nodoABorrar->parent;
 
+		// tenemos que checar que no sea la raíz:
+		if (nodoABorrar == root)
+		{
+			root = hijoDeNodoABorrar;
+		}
 		// checamos si el nodo a borrar es el hijo izquierdo o derecho de su padre para conectar al 
 		// abuelo con su nieto
-		if (nodoABorrar->parent->leftChild == nodoABorrar)
+		else if (nodoABorrar->parent->leftChild == nodoABorrar)
 			nodoABorrar->parent->leftChild = hijoDeNodoABorrar;
 		else
 			nodoABorrar->parent->rightChild = hijoDeNodoABorrar;

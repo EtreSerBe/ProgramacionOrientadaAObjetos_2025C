@@ -17,6 +17,8 @@ void DemostracionBinarySearchTree()
 	myBST.Add(2);
 	myBST.Add(9);
 
+
+
 	myBST.InOrderRecursivo();
 
 	myBST.PreOrderRecursivo();
@@ -105,6 +107,33 @@ void DemostracionBinarySearchTree()
 
 	cout << "Despues de haber borrado al 3" << endl;
 	myBST.InOrderRecursivo();
+
+	// Probamos el caso 3, que es cuando el nodo tiene 2 hijos. El nodo 8 y el nodo 5 cumplen esta condición ahorita.
+	myBST.BorrarPorValor(8);
+	cout << "Despues de haber borrado al 8" << endl;
+	myBST.InOrderRecursivo();
+
+	myBST.BorrarPorValor(5);
+	cout << "Despues de haber borrado al 5" << endl;
+	myBST.InOrderRecursivo();
+
+	myBST.BorrarPorValor(7);
+	cout << "Despues de haber borrado al 7" << endl;
+	myBST.InOrderRecursivo();
+
+	myBST.BorrarPorValor(9);
+	cout << "Despues de haber borrado al 9" << endl;
+	myBST.InOrderRecursivo();
+
+	myBST.BorrarPorValor(4);
+	cout << "Despues de haber borrado al 4" << endl;
+	myBST.InOrderRecursivo();
+
+
+
+	// 5, 3, 8, 4, 7, 2, 9 // este nos genera un árbol de 3 pisos, perfectamente balanceado
+
+	// 2, 3, 4, 5, 7, 8, 9 // esto nos genera el peor árbol posible, completamente desbalanceado, con N-pisos o niveles
 
 
 	myBST.Add(3); // caso de manejo de valores repetidos.
