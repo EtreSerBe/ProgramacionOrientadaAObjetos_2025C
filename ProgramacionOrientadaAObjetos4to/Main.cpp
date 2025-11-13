@@ -59,12 +59,15 @@ class ExplicacionIfndef
 #include "Vector2D.h"
 
 #include "BinarySearchTree.h"
+#include "Figura.h"
 
 
 #define TAMANO_EJEMPLO_CUADRATICO 2
 
 int main()
 {
+
+	DemostracionFiguras();
 
 	DemostracionBinarySearchTree();
 

@@ -7,6 +7,9 @@ void DemostracionSentinelLinkedList()
 	// primero que todo, probar el constructor declarando una variable de este tipo.
 	SentinelLinkedList<string> mySentinelLinkedList;
 
+	// Probar el stdException
+	mySentinelLinkedList.PopBack();
+
 	// esa cosa se crea vacía, hay que meterle algún elemento
 	mySentinelLinkedList.Append("Juan");
 

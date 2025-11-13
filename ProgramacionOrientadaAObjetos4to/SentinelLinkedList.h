@@ -1,6 +1,11 @@
 #pragma once
 #include <iostream>
+#include <stdexcept>
 using namespace std;
+
+// Throw (lanzar en español) se lanza un error, algo salió mal.
+// Catch (atrapar)
+
 
 template <typename T>
 class SentinelLinkedList
@@ -54,22 +59,36 @@ public:
 	// Función PopBack quita y borra el último elemento de la Lista y regresa su valor.
 	T PopBack()
 	{
-		// tenemos que checar que no esté vacía la lista.
-		if (count == 0)
+		// El try-catch es cuando quieres poder recuperarte de la excepción, 
+		// pero usar el puro throw, sin el try-catch es que un error lo suficientemente grave como para 
+		// detener el programa entero.
+		try
 		{
-			cout << "Error, trataron de hacer PopBack de una lista vacía." << endl;
-			return T{}; // regresamos un valor por defecto.
+			// tenemos que checar que no esté vacía la lista.
+			if (count == 0)
+			{
+				cout << "Error, trataron de hacer PopBack de una lista vacía." << endl;
+				throw out_of_range("Error, trataron de hacer PopBack de una lista vacía.");
+				// return T{}; // regresamos un valor por defecto.
+				// en un Bloque de Try{} después de que se lanza un Throw, te sales de las llaves {} del Try y te 
+				// vas a las llaves {} del catch.
+			}
+
+			// El nodo final es el prev de NIL. 
+			Node* nodoABorrar = NIL->prev;
+			T valorDelNodoABorrar = nodoABorrar->data;
+
+			// hace las reconexiones entre prev's y next's y reduce el count en 1.
+			Delete(nodoABorrar);
+
+			// Regresamos el valor que almacena dicho nodo.
+			return valorDelNodoABorrar;
 		}
-
-		// El nodo final es el prev de NIL. 
-		Node* nodoABorrar = NIL->prev;
-		T valorDelNodoABorrar = nodoABorrar->data;
-
-		// hace las reconexiones entre prev's y next's y reduce el count en 1.
-		Delete(nodoABorrar);
-
-		// Regresamos el valor que almacena dicho nodo.
-		return valorDelNodoABorrar;
+		catch(const out_of_range& e) // se llama 'e' porque es el Error
+		{
+			// What() es el mensaje que está dentro de la Exception que se le hizo throw.
+			cerr << e.what() << endl;
+		}
 	}
 
 	// Función Front devuelve el valor del primer elemento de la lista
@@ -116,7 +135,8 @@ public:
 	{
 		if (indice >= count)
 		{
-			cout << "Error, trataron de acceder a un índice inválido:" << indice << endl;
+			// este se puede considerar como un error lo suficientemente grave como para detener el programa.
+			throw out_of_range("Error, trataron de acceder a un índice inválido");
 			return T{};
 		}
 

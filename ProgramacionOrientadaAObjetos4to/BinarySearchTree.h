@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 using namespace std;
+#include<vector> // Recuerden, "vector" es el nombre del DynamicArray en c++ STL.
 
 
 template <typename T>
@@ -79,6 +80,151 @@ public:
 		}
 	}
 
+
+	// Buscar elemento
+	bool Find(T value)
+	{
+		Node* resultado = FindNode(value);
+		if (resultado == nullptr)
+			return false; // no se encontró.
+		return true; // sí se encontró
+	}
+
+	// borrar elemento
+
+	// Retorna el valor más alto en el árbol.
+	T MaxValue()
+	{
+		// Es solamente irse por los hijos derechos hasta que ya no haya más.
+		// Checar que la raíz sea válida
+		if (root == nullptr)
+		{
+			cerr << "Error, se llamó la función MaxValue pero el árbol está vacío." << endl;
+			return T{}; // regresamos un valor por defecto.
+		}
+
+		// puntero auxiliar hacia el nodo que actualmente estamos checando en el árbol.
+		Node* nodoActual = root;
+		// Mientras el hijo derecho de este nodo actual siga siendo un nodo válido...
+		while (nodoActual->rightChild != nullptr)
+		{
+			nodoActual = nodoActual->rightChild;
+		}
+		// Retornamos el valor del nodo actual, ya que es el valor más alto.
+		return nodoActual->value;
+	}
+
+	// Retorna el valor más bajo en el árbol.
+	T MinValue()
+	{
+		// Es solamente irse por los hijos izquierdos hasta que ya no haya más.
+		// Checar que la raíz sea válida
+		if (root == nullptr)
+		{
+			cerr << "Error, se llamó la función MinValue pero el árbol está vacío." << endl;
+			return T{}; // regresamos un valor por defecto.
+		}
+
+		// puntero auxiliar hacia el nodo que actualmente estamos checando en el árbol.
+		Node* nodoActual = root;
+		// Mientras el hijo izquierdo de este nodo actual siga siendo un nodo válido...
+		while (nodoActual->leftChild != nullptr)
+		{
+			nodoActual = nodoActual->leftChild;
+		}
+		// Retornamos el valor del nodo actual, ya que es el valor más bajo.
+		return nodoActual->value;
+	}
+
+	T Siguiente(T value)
+	{
+		// Checamos que el valor value esté presente en el árbol y obtenemos dicho nodo
+		Node* nodoConValue = FindNode(value);
+		if (nodoConValue == nullptr)
+		{
+			// Imprimimos un error y regresamos un error por defecto.
+			cerr << "ERROR, no existe un nodo con valor: " << value << " en este árbol, no hay sucesor para él" << endl;
+			return T{};
+		}
+
+		// SI sí existe, mandamos a llamar la de sucesor
+		// pero tenemos que checar que sí haya un sucesor
+		Node* sucesor = Sucesor(nodoConValue);
+		if (sucesor == nullptr)
+		{
+			cout << "No hay sucesor para el nodo con valor: " << value << " en este árbol" << endl;
+			return T{};
+		}
+		return sucesor->value;
+	}
+
+	T Anterior(T value)
+	{
+		// Checamos que el valor value esté presente en el árbol y obtenemos dicho nodo
+		Node* nodoConValue = FindNode(value);
+		if (nodoConValue == nullptr)
+		{
+			// Imprimimos un error y regresamos un error por defecto.
+			cerr << "ERROR, no existe un nodo con valor: " << value << " en este árbol, no hay predecesor para él" << endl;
+			return T{};
+		}
+
+		// SI sí existe, mandamos a llamar la de predecesor
+		// pero tenemos que checar que sí haya un predecesor
+		Node* predecesor = Predecesor(nodoConValue);
+		if (predecesor == nullptr)
+		{
+			cout << "No hay predecesor para el nodo con valor: " << value << " en este árbol" << endl;
+			return T{};
+		}
+		return predecesor->value;
+	}
+
+	// Borra el primer nodo encontrado que tenga dicho valor
+	bool BorrarPorValor(T valor)
+	{
+		// como siempre en árboles, empezamos desde la raíz.
+		if (root == nullptr)
+		{
+			// sin el try-catch, porque esto es un error grave.
+			throw invalid_argument("Este árbol está vacío");
+			return false; // por si le quieren seguir depurando incluso tras este error.
+		}
+		// Primero que todo, hay que encontrar si está un nodo con dicho valor.
+		Node* nodoABorrar = FindNode(valor);
+		// Si el nodo A Borrar es nullptr, entonces no existe un nodo con dicho valor
+		if (nodoABorrar == nullptr)
+		{
+			// sin el try-catch, porque esto es un error grave.
+			throw invalid_argument("No hay nodo con dicho valor en este árbol");
+			return false; // por si le quieren seguir depurando incluso tras este error.
+		}
+
+		// Si sí hay dicho nodo, checamos en cuál de los 3 casos de Borrado cae:
+		/* 1) Si X no tiene hijos (si su left y su right son nullptr),
+		haces que el puntero a hijo de su padre que apunta a este
+		nodo sea null y luego borras este nodo. No requieres reconexiones. */
+		if (nodoABorrar->leftChild == nullptr && nodoABorrar->rightChild == nullptr)
+		{
+			// Entonces estamos en el caso 1, que es el más fácil.
+			DeleteCaso1(nodoABorrar);
+			return true;;
+		}
+		// Aquí quiere decir que tiene al menos un hijo. 
+		// Checamos si tiene solo 1 de los 2 hijos.
+		if (nodoABorrar->leftChild == nullptr && !(nodoABorrar->rightChild == nullptr) ||
+			!(nodoABorrar->leftChild == nullptr) && nodoABorrar->rightChild == nullptr)
+		{
+			// Entonces estamos en el caso #2:
+			DeleteCaso2(nodoABorrar);
+			return true;
+		}
+
+
+		return true;
+	}
+
+
 	// Es la versión pública de la función, que un usuario puede utilizar.
 	// La otra de InOrderRecursivo NO es pública porque los usuarios no deben manipular nodos del árbol 
 	// directamente nunca.
@@ -101,6 +247,31 @@ public:
 		cout << "Post order Recursivo: ";
 		PostOrderRecursivo(root);
 		cout << endl;
+	}
+
+	pair<T, T> ObtenerMinimoYMaximo()
+	{
+		T max = MaxValue();
+		T min = MinValue();
+		return pair<T, T>(min, max);
+	}
+
+	T* ObtenerRaizMinimoYMaximo()
+	{
+		T* resultado = new T[3];
+		resultado[0] = root->value;
+		resultado[1] = MinValue();
+		resultado[2] = MaxValue();
+		return resultado;
+	}
+
+	vector<T> ObtenerRaizMinimoYMaximoConVector()
+	{
+		vector<T> resultado;
+		resultado.push_back(root->value);
+		resultado.push_back(MinValue());
+		resultado.push_back(MaxValue());
+		return resultado;
 	}
 
 private:
@@ -126,6 +297,167 @@ private:
 		Node* leftChild;
 	};
 
+
+	void DeleteCaso1(Node* nodoABorrar)
+	{
+		// primero tenemos que checar que este nodo SÍ tenga un padre,
+		if (nodoABorrar->parent == nullptr)
+		{
+			// si no tiene padre, entonces este nodo a borrar es la raíz :D y simplemente se borra
+			delete nodoABorrar;
+			root = nullptr;
+			return;
+		}
+		// nodoABorrar checa si es el hijo izquierdo O derecho de su padre 
+		if (nodoABorrar->parent->leftChild == nodoABorrar) // checamos si nodo a borrar es hijo izquierdo
+		{
+			// entonces sí es el hijo izquierdo
+			nodoABorrar->parent->leftChild = nullptr; // le dice a su papá que ya no tiene hijo izquierdo
+		}
+		else
+		{
+			// si no, nodo a borrar es el hijo derecho
+			nodoABorrar->parent->rightChild = nullptr; // le dice a su papá que ya no tiene hijo derecho
+		}
+
+		// sin importar si es hijo derecho o izquierdo, pues se borra este nodo.
+		delete nodoABorrar;
+	}
+
+	void DeleteCaso2(Node* nodoABorrar)
+	{
+		// Si X solo tiene un hijo, haces que dicho hijo tome el lugar de X en el árbol y
+		// luego borramos X. Requiere 2 reconexiones (del padre de X al hijo de X y viceversa).
+		// Que el parent del hijo de X ahora sea el parent de X
+		Node* hijoDeNodoABorrar = nullptr;
+
+		if (nodoABorrar->leftChild == nullptr) // si el izquierdo es nullptr, el derecho es el hijo válido
+			hijoDeNodoABorrar = nodoABorrar->rightChild;
+		else
+			hijoDeNodoABorrar = nodoABorrar->leftChild; // y si no, entonces el izquierdo es el válido
+
+
+		hijoDeNodoABorrar->parent = nodoABorrar->parent;
+
+		// checamos si el nodo a borrar es el hijo izquierdo o derecho de su padre para conectar al 
+		// abuelo con su nieto
+		if (nodoABorrar->parent->leftChild == nodoABorrar)
+			nodoABorrar->parent->leftChild = hijoDeNodoABorrar;
+		else
+			nodoABorrar->parent->rightChild = hijoDeNodoABorrar;
+
+		// y por último borramos al nodo a borrar
+		delete nodoABorrar;
+	}
+
+
+	// Buscar elemento
+	Node* FindNode(T value)
+	{
+		// Checar que la raíz sea válida
+		if (root == nullptr)
+			return nullptr; //si la raíz es inválida, cualquier búsqueda dará falso.
+
+		// puntero auxiliar hacia el nodo que actualmente estamos checando en el árbol.
+		Node* nodoActual = root;
+		// Mientras este nodo actual siga siendo un nodo válido...
+		while (nodoActual != nullptr)
+		{
+			// checamos si el nodo actual tiene el valor igual al que estamos buscando.
+			if (nodoActual->value == value)
+				return nodoActual; // si sí es igual, ya lo encontramos.
+
+			// Si no tiene el valor buscado, tenemos que ver si ahora el actual va a ser su hijo derecho o izquierdo
+			// Si value es mayor que el valor del nodo actual...
+			if (value > nodoActual->value)
+			{
+				// ... entonces el nodo actual ahora avanza a su hijo derecho
+				nodoActual = nodoActual->rightChild;
+			}
+			else
+			{
+				// ... y si no, entonces el nodo actual ahora avanza a su hijo izquierdo 
+				nodoActual = nodoActual->leftChild;
+			}
+		}
+		// este while se rompe cuando se llega a la posición donde debería estar value, pero en su lugar hay nullptr.
+		// entonces, en este punto ya no se encontró value, y regresamos false.
+		return nullptr;
+	}
+
+	Node* Sucesor(Node* node)
+	{
+		// Caso 1: El nodo sí tiene un hijo derecho
+		if (node->rightChild != nullptr)
+		{
+			// Paso 1: Dar un paso a la derecha
+			Node* nodoActual = node->rightChild; // este nodo auxiliar es como el "nodoActual" que usamos en otras funciones.
+
+			// Paso 2: irte lo más a la izquierda que se pueda desde ahí.
+			while (nodoActual->leftChild != nullptr)
+				nodoActual = nodoActual->leftChild;
+
+			// El while se rompe cuando el nodo actual ya no tiene hijo izquierdo, y entonces ya encontramos al sucesor
+			return nodoActual;
+		}
+		// Caso 2: El nodo NO tiene un hijo derecho.
+		// Preguntar al parent del nodo actual si el nodo actual es su hijo izquierdo
+		Node* nodoActual = node;
+		Node* padreNodoActual = nodoActual->parent;
+		// Si subiste hasta el padre de la raíz (el cual es nullptr) entonces no habrá un sucesor.
+		while(nodoActual->parent != nullptr)
+		{
+			// Si el nodo actual es igual al hijo izquierdo de su padre
+			if (nodoActual == padreNodoActual->leftChild)
+			{
+				// ... entonces el padre es el sucesor
+				return padreNodoActual;
+			}
+			// Si no, el nodo actual ahora apunta al padre, y se repite el proceso.
+			nodoActual = padreNodoActual;
+			padreNodoActual = padreNodoActual->parent;
+		}
+
+		// si te sales de este while, entonces no hay sucesor
+		return nullptr;
+	}
+
+	Node* Predecesor(Node* node)
+	{
+		// Caso 1: El nodo sí tiene un hijo izquierdo
+		if (node->leftChild != nullptr)
+		{
+			// Paso 1: Dar un paso a la derecha
+			Node* nodoActual = node->leftChild; // este nodo auxiliar es como el "nodoActual" que usamos en otras funciones.
+
+			// Paso 2: irte lo más a la derecha que se pueda desde ahí.
+			while (nodoActual->rightChild != nullptr)
+				nodoActual = nodoActual->rightChild;
+
+			// El while se rompe cuando el nodo actual ya no tiene hijo derecho, y entonces ya encontramos al predecesor
+			return nodoActual;
+		}
+		// Caso 2: El nodo NO tiene un hijo izquierdo.
+		// Preguntar al parent del nodo actual si el nodo actual es su hijo derecho
+		Node* nodoActual = node;
+		Node* padreNodoActual = nodoActual->parent;
+		// Si subiste hasta el padre de la raíz (el cual es nullptr) entonces no habrá un predecesor.
+		while (nodoActual->parent != nullptr)
+		{
+			// Si el nodo actual es igual al hijo izquierdo de su padre
+			if (nodoActual == padreNodoActual->rightChild)
+			{
+				// ... entonces el padre es el predecesor
+				return padreNodoActual;
+			}
+			// Si no, el nodo actual ahora apunta al padre, y se repite el proceso.
+			nodoActual = padreNodoActual;
+			padreNodoActual = padreNodoActual->parent;
+		}
+
+		// si te sales de este while, entonces no hay predecesor
+		return nullptr;
+	}
 
 	void InOrderRecursivo(Node* nodoActual)
 	{

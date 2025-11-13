@@ -141,6 +141,7 @@
     <ClCompile Include="ExplicacionIfndef.cpp" />
     <ClCompile Include="ExplicacionStatic.cpp" />
     <ClCompile Include="ExplicacionTemplates.cpp" />
+    <ClCompile Include="Figura.cpp" />
     <ClCompile Include="Gato.cpp" />
     <ClCompile Include="Humano.cpp" />
     <ClCompile Include="LinkedList.cpp" />
@@ -177,6 +178,7 @@
     <ClInclude Include="ExplicacionIfndef.h" />
     <ClInclude Include="ExplicacionStatic.h" />
     <ClInclude Include="ExplicacionTemplates.h" />
+    <ClInclude Include="Figura.h" />
     <ClInclude Include="Gato.h" />
     <ClInclude Include="Humano.h" />
     <ClInclude Include="LinkedList.h" />
