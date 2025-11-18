@@ -143,6 +143,7 @@
     <ClCompile Include="ExplicacionTemplates.cpp" />
     <ClCompile Include="Figura.cpp" />
     <ClCompile Include="Gato.cpp" />
+    <ClCompile Include="HashTableChaining.cpp" />
     <ClCompile Include="Humano.cpp" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="ExplicacionTemplates.h" />
     <ClInclude Include="Figura.h" />
     <ClInclude Include="Gato.h" />
+    <ClInclude Include="HashTableChaining.h" />
     <ClInclude Include="Humano.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="ParametrosPorReferenciaComoSalidaDeFuncion.h" />
